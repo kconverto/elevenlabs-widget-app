@@ -187,5 +187,58 @@
             }, 500);
         });
     </script>
+    <script>
+        // Extract URL parameters to pass to the widget
+        document.addEventListener('DOMContentLoaded', function() {
+            // Log when the script starts running
+            console.log("Script started - DOM loaded");
+            
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            // Get parameters from URL and log them
+            const clientName = urlParams.get('clientName') || '';
+            console.log("clientName from URL:", clientName);
+            
+            const companyName = urlParams.get('companyName') || '';
+            const interviewId = urlParams.get('interviewId') || '';
+            
+            // Set dynamic variables
+            const widget = document.getElementById('brand-interview');
+            console.log("Widget found:", widget ? "Yes" : "No");
+            
+            const dynamicVars = {
+                clientName: clientName,
+                companyName: companyName,
+                interviewId: interviewId
+            };
+            
+            // Log the dynamic variables object for debugging
+            console.log("Dynamic Variables Object:", dynamicVars);
+            console.log("Dynamic Variables JSON:", JSON.stringify(dynamicVars));
+            
+            // Update the dynamic-variables attribute
+            widget.setAttribute('dynamic-variables', JSON.stringify(dynamicVars));
+            
+            // Log the attribute after setting it to confirm
+            console.log("Attribute after setting:", widget.getAttribute('dynamic-variables'));
+            
+            // Update the welcome message if client name is provided
+            if (clientName) {
+                const introTitle = document.querySelector('h1');
+                introTitle.textContent = `Welcome to Your Brand Strategy Interview, ${clientName}`;
+            }
+            
+            // Add event listener to widget to monitor when it's fully loaded
+            widget.addEventListener('load', function() {
+                console.log("Widget loaded event triggered!");
+            });
+            
+            // Add a timeout to check the attribute after a delay
+            setTimeout(function() {
+                console.log("After 2 seconds, dynamic-variables attribute:", 
+                    widget.getAttribute('dynamic-variables'));
+            }, 2000);
+        });
+    </script>
 </body>
 </html>
