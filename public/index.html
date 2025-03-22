@@ -3,55 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ElevenLabs Conversational Widget</title>
+    <title>My AI Assistant</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
             text-align: center;
         }
-        #widget-container {
+        h1 {
+            color: #333;
+        }
+        /* The widget will be embedded where you place the custom element */
+        elevenlabs-convai {
             width: 100%;
             max-width: 500px;
             height: 600px;
             margin: 0 auto;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        h1 {
-            color: #333;
+            display: block;
         }
     </style>
 </head>
 <body>
     <h1>My AI Assistant</h1>
     <p>Powered by ElevenLabs Conversational AI</p>
-    <div id="widget-container"></div>
 
-    <!-- ElevenLabs Widget Script -->
-    <script src="https://widget.elevenlabs.io/widget.js"></script>
+    <!-- This is where the widget will appear -->
+    <elevenlabs-convai 
+        id="ai-widget"
+        agent-id="cKA5of9qVq6nTiWBzQP0">
+    </elevenlabs-convai>
+
+    <!-- ElevenLabs Widget Script - correct URL -->
+    <script src="https://elevenlabs.io/convai-widget/index.js"></script>
 
     <script>
-        // Widget initialization
+        // You can add any additional customization here if needed
         document.addEventListener('DOMContentLoaded', function() {
-            // Get URL parameters
+            // Get URL parameters if you want to pass dynamic values
             const urlParams = new URLSearchParams(window.location.search);
-            const userName = urlParams.get('userName') || 'User';
-            const initialContext = urlParams.get('context') || '';
-            const characterId = urlParams.get('character') || 'default';
+            const userName = urlParams.get('userName');
             
-            // Fetch configuration from server (secures API key)
-            fetch(`/api/widget-config?userName=${encodeURIComponent(userName)}&context=${encodeURIComponent(initialContext)}&character=${encodeURIComponent(characterId)}`)
-                .then(response => response.json())
-                .then(config => {
-                    // Add container ID to config
-                    config.containerId = 'widget-container';
-                    
-                    // Initialize widget with config
-                    window.elevenlabsWidget.init(config);
-                })
-                .catch(error => console.error('Error initializing widget:', error));
+            // If userName is provided, you can set a custom welcome message
+            if (userName) {
+                const widget = document.getElementById('ai-widget');
+                widget.setAttribute('welcome-message', `Hello ${userName}! How can I help you today?`);
+            }
         });
     </script>
 </body>
