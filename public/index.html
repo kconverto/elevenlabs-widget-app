@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElevenLabs Conversational Widget</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        #widget-container {
+            width: 100%;
+            max-width: 500px;
+            height: 600px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        h1 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>My AI Assistant</h1>
+    <p>Powered by ElevenLabs Conversational AI</p>
+    <div id="widget-container"></div>
+
+    <!-- ElevenLabs Widget Script -->
+    <script src="https://widget.elevenlabs.io/widget.js"></script>
+
+    <script>
+        // Widget initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const userName = urlParams.get('userName') || 'User';
+            const initialContext = urlParams.get('context') || '';
+            const characterId = urlParams.get('character') || 'default';
+            
+            // Fetch configuration from server (secures API key)
+            fetch(`/api/widget-config?userName=${encodeURIComponent(userName)}&context=${encodeURIComponent(initialContext)}&character=${encodeURIComponent(characterId)}`)
+                .then(response => response.json())
+                .then(config => {
+                    // Add container ID to config
+                    config.containerId = 'widget-container';
+                    
+                    // Initialize widget with config
+                    window.elevenlabsWidget.init(config);
+                })
+                .catch(error => console.error('Error initializing widget:', error));
+        });
+    </script>
+</body>
+</html>
