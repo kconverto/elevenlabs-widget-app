@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,10 +42,7 @@
             margin-top: 25px;
         }
         .widget-container {
-            display: flex;
-            justify-content: center;
-            margin: 30px 0;
-            min-height: 300px;
+            margin: 20px 0;
         }
         .footer {
             text-align: center;
@@ -54,11 +51,11 @@
             padding: 20px 0;
         }
         
-        /* Ensure the widget looks good */
+        /* Style the widget to appear directly in the content */
         elevenlabs-convai {
             display: block;
             width: 100%;
-            max-width: 500px;
+            height: 500px;
             margin: 0 auto;
         }
     </style>
@@ -72,15 +69,21 @@
             <div class="details">
                 <p>Our AI Brand Manager will guide you through a series of questions to understand your brand's vision, values, and unique positioning. This conversation will help us create personalized brand guidelines tailored to your business.</p>
                 
-                <p>When you're ready, click <strong>"Begin Brand Interview"</strong> below to start the conversation. This interview typically takes about 30 minutes.</p>
+                <p>When you're ready, click <strong>"Begin Interview"</strong> below to start the conversation. This interview typically takes about 30 minutes.</p>
             </div>
         </div>
         
         <div class="card">
             <div class="widget-container">
                 <!-- Elevenlabs Voice Agent Widget -->
-                <elevenlabs-convai agent-id="cKA5of9qVq6nTiWBzQP0"></elevenlabs-convai>
-                <script src="https://elevenlabs.io/convai-widget/index.js" async type="text/javascript"></script>
+                <elevenlabs-convai 
+                    agent-id="cKA5of9qVq6nTiWBzQP0"
+                    variant="expanded"
+                    start-call-text="Begin Interview"
+                    end-call-text="End Interview"
+                    speaking-text="Brand Manager is speaking..."
+                    listening-text="Listening to your response...">
+                </elevenlabs-convai>
             </div>
         </div>
         
@@ -88,5 +91,8 @@
             <p>© 2025 Your Company Name. All interviews are recorded to help create your brand strategy.</p>
         </div>
     </div>
+
+    <!-- ElevenLabs Widget Script -->
+    <script src="https://elevenlabs.io/convai-widget/index.js"></script>
 </body>
 </html>
