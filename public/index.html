@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brand Strategy Interview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Poppins', Arial, sans-serif;
+            font-family: 'Montserrat', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f9f9f9;
@@ -33,9 +36,11 @@
         }
         
         h1 {
+            font-family: 'Playfair Display', serif;
             color: #333;
             font-weight: 600;
             margin-bottom: 10px;
+            text-align: center;
         }
         
         h2 {
@@ -43,17 +48,75 @@
             font-weight: 400;
             margin-top: 0;
             margin-bottom: 30px;
+            text-align: center;
         }
         
         .intro {
             background-color: #fff;
-            padding: 25px;
-            border-radius: 8px;
+            padding: 35px; /* Increased padding */
+            border-radius: 12px; /* Slightly more rounded corners */
             margin-bottom: 30px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08); /* Enhanced shadow */
         }
         
-        /* Key change: Widget container with NO visual styling but retained positioning context */
+        /* Progress indicator styles */
+        .progress-steps {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .step {
+            flex: 1;
+            max-width: 120px;
+            position: relative;
+        }
+        
+        .step-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #e0e0e0;
+            color: #888;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 8px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .step-1 .step-number {
+            background-color: #4a90e2;
+            color: white;
+        }
+        
+        .step-text {
+            font-size: 12px;
+            color: #888;
+        }
+        
+        .step-1 .step-text {
+            color: #4a90e2;
+            font-weight: 500;
+        }
+        
+        .step-line {
+            position: absolute;
+            top: 15px;
+            height: 2px;
+            background-color: #e0e0e0;
+            width: 100%;
+            right: 50%;
+            z-index: -1;
+        }
+        
+        .step:first-child .step-line {
+            display: none;
+        }
+        
+        /* Widget container with NO visual styling but retained positioning context */
         .widget-container {
             /* No background, no shadow, no padding */
             background: transparent;
@@ -87,6 +150,18 @@
             margin-top: 40px;
             padding: 20px;
         }
+        
+        /* Content container for body text */
+        .content-container {
+            max-width: 85%;
+            margin: 0 auto 30px;
+            text-align: center;
+        }
+        
+        /* Increase line height for better readability */
+        p {
+            line-height: 1.6;
+        }
     </style>
 </head>
 <body>
@@ -96,21 +171,45 @@
     
     <div class="container">
         <div class="intro">
-            <h1>Welcome to Your Brand Strategy Interview</h1>
-            <h2>We're excited to learn more about your brand</h2>
-            <p>Our AI Brand Manager will guide you through a series of questions to understand your brand's vision, values, and unique positioning. This conversation will help us create personalized brand guidelines tailored to your business.</p>
-            <p>When you're ready, click "<strong>Begin Interview</strong>" below to start the conversation. This interview typically takes about 30 minutes.</p>
+            <h1>Let's Shape Your Brand Together</h1>
+            <h2>Your journey to a powerful brand identity starts here</h2>
+            
+            <!-- Progress indicator -->
+            <div class="progress-steps">
+                <div class="step step-1">
+                    <div class="step-line"></div>
+                    <div class="step-number">1</div>
+                    <div class="step-text">Discovery Interview</div>
+                </div>
+                <div class="step step-2">
+                    <div class="step-line"></div>
+                    <div class="step-number">2</div>
+                    <div class="step-text">Visual Identity</div>
+                </div>
+                <div class="step step-3">
+                    <div class="step-line"></div>
+                    <div class="step-number">3</div>
+                    <div class="step-text">Brand Guidelines</div>
+                </div>
+            </div>
+            
+            <!-- Content container for body text -->
+            <div class="content-container">
+                <p>Our AI Brand Architect will guide you through an enhanced conversation to illuminate your brand's <span class="highlight">vision</span>, <span class="highlight">values</span>, and <span class="highlight">unique positioning</span>. These insights will become the digital blueprint of your brand identity.</p>
+                
+                <p>The next <strong>30 minutes</strong> will transform your brand perspective as we capture your essence and craft intelligent guidelines that will elevate how you connect with your audience in today's digital landscape.</p>
+            </div>
         </div>
         
         <!-- Invisible container that serves as positioning anchor -->
         <div class="widget-container">
             <elevenlabs-convai 
                 id="brand-interview"
-                agent-id="cKA5of9qVq6nTiWBzQP0"
+                agent-id="scjgAdt5TlWpeTcWTpI4"
                 variant="expanded"
-                start-call-text="Begin Interview"
+                start-call-text="Start Your Brand Journey"
                 end-call-text="End Interview"
-                action-text="Need Help?"
+                action-text="Discover Your Brand Voice"
                 speaking-text="Brand Manager is speaking..."
                 listening-text="Listening to your response..."
                 dynamic-variables='{
@@ -122,7 +221,7 @@
         </div>
         
         <div class="footer">
-            <p>© 2025 Your Company Name. All interviews are recorded to help create your brand strategy.</p>
+            <p>© 2025 Sparktoria. All interviews are recorded to help create your brand strategy.</p>
         </div>
     </div>
 
@@ -138,16 +237,16 @@
             
             const widget = document.getElementById('brand-interview');
             const dynamicVars = {
-                client_name: clientName,
-                company_name: companyName,
-                interview_id: interviewId
+                clientName: clientName,
+                companyName: companyName,
+                interviewId: interviewId
             };
             
             widget.setAttribute('dynamic-variables', JSON.stringify(dynamicVars));
             
             if (clientName) {
                 const introTitle = document.querySelector('h1');
-                introTitle.textContent = `Welcome to Your Brand Strategy Interview, ${clientName}`;
+                introTitle.textContent = `Let's Shape Your Brand Together, ${clientName}`;
             }
             
             // Add observer to ensure widget stays where we want it
@@ -185,59 +284,6 @@
                     attributes: true 
                 });
             }, 500);
-        });
-    </script>
-    <script>
-        // Extract URL parameters to pass to the widget
-        document.addEventListener('DOMContentLoaded', function() {
-            // Log when the script starts running
-            console.log("Script started - DOM loaded");
-            
-            const urlParams = new URLSearchParams(window.location.search);
-            
-            // Get parameters from URL and log them
-            const clientName = urlParams.get('clientName') || '';
-            console.log("clientName from URL:", clientName);
-            
-            const companyName = urlParams.get('companyName') || '';
-            const interviewId = urlParams.get('interviewId') || '';
-            
-            // Set dynamic variables
-            const widget = document.getElementById('brand-interview');
-            console.log("Widget found:", widget ? "Yes" : "No");
-            
-            const dynamicVars = {
-                clientName: clientName,
-                companyName: companyName,
-                interviewId: interviewId
-            };
-            
-            // Log the dynamic variables object for debugging
-            console.log("Dynamic Variables Object:", dynamicVars);
-            console.log("Dynamic Variables JSON:", JSON.stringify(dynamicVars));
-            
-            // Update the dynamic-variables attribute
-            widget.setAttribute('dynamic-variables', JSON.stringify(dynamicVars));
-            
-            // Log the attribute after setting it to confirm
-            console.log("Attribute after setting:", widget.getAttribute('dynamic-variables'));
-            
-            // Update the welcome message if client name is provided
-            if (clientName) {
-                const introTitle = document.querySelector('h1');
-                introTitle.textContent = `Welcome to Your Brand Strategy Interview, ${clientName}`;
-            }
-            
-            // Add event listener to widget to monitor when it's fully loaded
-            widget.addEventListener('load', function() {
-                console.log("Widget loaded event triggered!");
-            });
-            
-            // Add a timeout to check the attribute after a delay
-            setTimeout(function() {
-                console.log("After 2 seconds, dynamic-variables attribute:", 
-                    widget.getAttribute('dynamic-variables'));
-            }, 2000);
         });
     </script>
 </body>
