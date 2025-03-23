@@ -205,7 +205,6 @@
         <div class="widget-container">
             <elevenlabs-convai 
                 id="brand-interview"
-                agent-id="NEggV97RYYBf8GYylZnC"
                 variant="expanded"
                 start-call-text="Start Now"
                 end-call-text="End Interview"
@@ -230,28 +229,59 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Log when the script starts running
+            console.log("DOM loaded - initializing widget...");
+            
+            // Get all parameters from URL
             const urlParams = new URLSearchParams(window.location.search);
             const clientName = urlParams.get('clientName') || '';
             const companyName = urlParams.get('companyName') || '';
             const interviewId = urlParams.get('interviewId') || '';
             
+            // Get agent ID from URL with fallback to default
+            const agentId = urlParams.get('agentId') || 'NEggV97RYYBf8GYylZnC'; // Default ID
+            
+            console.log("URL parameters extracted:", {
+                clientName,
+                companyName,
+                interviewId,
+                agentId
+            });
+            
             const widget = document.getElementById('brand-interview');
+            
+            // Set the agent-id attribute dynamically
+            widget.setAttribute('agent-id', agentId);
+            console.log("Agent ID set to:", agentId);
+            
+            // Set dynamic variables
             const dynamicVars = {
                 clientName: clientName,
                 companyName: companyName,
                 interviewId: interviewId
             };
             
+            // Log variable values
+            console.log("Setting dynamic variables:", JSON.stringify(dynamicVars));
+            
+            // Update dynamic variables attribute
             widget.setAttribute('dynamic-variables', JSON.stringify(dynamicVars));
             
+            // Verify the attribute was set correctly
+            console.log("Dynamic variables attribute set to:", widget.getAttribute('dynamic-variables'));
+            
+            // Update page content if client name provided
             if (clientName) {
                 const introTitle = document.querySelector('h1');
                 introTitle.textContent = `Let's Shape Your Brand Together, ${clientName}`;
+                console.log("Updated page title with client name:", clientName);
             }
             
             // Add observer to ensure widget stays where we want it
             // This runs after the widget is fully loaded and prevents it from moving
             setTimeout(function() {
+                console.log("Setting up widget position observer...");
+                
                 const observer = new MutationObserver(function(mutations) {
                     const widgetEl = document.getElementById('brand-interview');
                     if (widgetEl) {
