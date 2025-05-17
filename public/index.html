@@ -89,6 +89,34 @@
             position: static !important;
             display: block !important;
         }
+        
+        /* Support message styling */
+        .support-message {
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: var(--card-background);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .support-message a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .support-message a:hover {
+            text-decoration: underline;
+        }
+
+        .support-message p {
+            margin: 12px 0;
+        }
     </style>
 </head>
 <body>
@@ -119,6 +147,12 @@
                 "interviewId": ""
             }'>
         </elevenlabs-convai>
+    </div>
+    
+    <!-- Support message section -->
+    <div class="support-message">
+        <p>Having trouble with your call? No worries! Drop us a line at <a href="mailto:support@sparktoria.com">support@sparktoria.com</a> and we'll sort it out.</p>
+        <p>Already completed your conversation? Awesome! Please hold off on additional calls for now, as our agent only remembers your most recent chat. We'll be sending a form soon where you can add any extra thoughts. Need anything else in the meantime? Our support team is just an email away!</p>
     </div>
 
     <!-- ElevenLabs Widget Script -->
