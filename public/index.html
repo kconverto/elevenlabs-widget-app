@@ -9,47 +9,173 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #4a90e2;
-            --background-color: #f9f9f9;
-            --card-background: #ffffff;
+            --primary-color: rgb(235, 255, 0);
+            --secondary-color: rgb(73, 88, 255);
+            --background-color: #FFFFFF;
+            --card-background: #FFFFFF;
             --text-color: #333;
+            --dark-text: #2C2C2C;
+            --header-bg: rgb(235, 255, 0);
+            /* Support message theme tokens */
+            --support-bg: #DBE3FD;
+            --support-border: #C7D3FE;
+            --support-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
         }
-        
         body {
             font-family: 'Montserrat', sans-serif;
             margin: 0;
             padding: 0;
             background-color: var(--background-color);
             color: var(--text-color);
+            height: 100vh;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
         }
         
-        .header {
+        /* New Header Navigation */
+        .top-header {
+            background-color: var(--header-bg);
             width: 100%;
+            padding: 10px 0;
+            position: relative;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
-            justify-content: center;
-            padding: 30px 0;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .logo-nav {
+            display: flex;
+            align-items: center;
+            gap: 40px;
         }
         
         .logo {
-            max-width: 180px;
-            transition: transform 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
         }
         
-        .logo:hover {
-            transform: scale(1.05);
+        .logo img {
+            height: 22px;
+            width: auto;
         }
         
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .nav-menu a {
+            color: var(--dark-text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: opacity 0.3s ease;
+        }
+        
+        .nav-menu a:hover {
+            opacity: 0.7;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .login-btn {
+            background: none;
+            border: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.3s ease;
+        }
+        
+        .login-btn:hover {
+            opacity: 0.7;
+        }
+        
+        .support-btn {
+            background-color: var(--dark-text);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .back-link {
+            color: var(--dark-text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: opacity 0.3s ease;
+        }
+        
+        .back-link:hover {
+            opacity: 0.7;
+        }
+        
+        /* Main Content Container */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+        }
+        
+        /* Brand Section */
+        .brand-section {
+            text-align: center;
+            padding: 20px 20px 10px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .spark-brand {
+            font-size: 100px;
+            font-weight: 700;
+            color: var(--dark-text);
+            line-height: 0.8;
+            margin: 20px 0 35px 0;
+            text-align: center;
+        }
+        
+        .brand-description {
+            font-size: 18px;
+            line-height: 1.5;
+            color: var(--text-color);
+            margin: 20px auto 0px auto;
+            max-width: 600px;
+            font-weight: 400;
+        }
+        
+        /* Widget Container - Hero Element */
         .widget-container {
-            margin: 50px 0;
+            margin: 10px 0;
             width: 100%;
             display: flex;
             justify-content: center;
+            padding: 0 20px;
         }
-        
         /* Loading animation for initialization */
         .loading-overlay {
             position: fixed;
@@ -64,58 +190,167 @@
             z-index: 1000;
             transition: opacity 0.6s ease, visibility 0.6s;
         }
-        
         .loading-spinner {
             width: 50px;
             height: 50px;
-            border: 3px solid rgba(74, 144, 226, 0.2);
+            border: 3px solid rgba(73, 88, 255, 0.2);
             border-radius: 50%;
-            border-top-color: var(--primary-color);
+            border-top-color: var(--secondary-color);
             animation: spin 1s ease-in-out infinite;
         }
-        
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
-        
         .loaded .loading-overlay {
             opacity: 0;
             visibility: hidden;
         }
-        
         /* ElevenLabs widget centering */
         elevenlabs-convai {
             margin: 0 auto !important;
             position: static !important;
             display: block !important;
         }
-        
         /* Support message styling */
         .support-message {
-            max-width: 600px;
-            margin: 30px auto;
-            padding: 20px;
-            background-color: var(--card-background);
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            max-width: 680px;
+            margin: 60px auto 30px;
+            padding: 32px;
+            background-color: var(--support-bg);
+            color: var(--dark-text);
+            border: 1px solid var(--support-border);
+            border-left: 8px solid var(--primary-color);
+            border-radius: 12px;
+            box-shadow: 0 12px 28px rgba(73, 88, 255, 0.15), 0 2px 8px rgba(0, 0, 0, 0.04), 0 0 0 2px rgba(235, 255, 0, 0.18);
             text-align: center;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #666;
+            font-size: 16px;
+            line-height: 1.65;
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
         }
-
-        .support-message a {
-            color: var(--primary-color);
+        .support-link {
+            color: var(--dark-text);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 700;
+            border-bottom: 2px solid rgba(235, 255, 0, 0.7);
+            padding-bottom: 2px;
+            transition: border-color 0.2s ease;
         }
-
-        .support-message a:hover {
-            text-decoration: underline;
+        .support-link:hover,
+        .support-link:focus-visible {
+            outline: none;
+            border-bottom-color: rgba(235, 255, 0, 1);
         }
-
         .support-message p {
-            margin: 12px 0;
+            margin: 18px 0;
+        }
+        .support-message p:first-child {
+            margin-top: 0;
+        }
+        .support-message p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Interaction */
+        .support-message:hover,
+        .support-message:focus-within {
+            transform: translateY(-1px);
+            box-shadow: 0 14px 34px rgba(73, 88, 255, 0.18), 0 4px 10px rgba(0, 0, 0, 0.06), 0 0 0 3px rgba(235, 255, 0, 0.25);
+        }
+
+        /* Eyebrow styles */
+        .support-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--dark-text);
+            margin-bottom: 14px;
+            padding: 4px 10px;
+            border: 1px solid var(--support-border);
+            border-radius: 9999px;
+            background: #FFFFFF;
+        }
+        .support-eyebrow svg {
+            width: 16px;
+            height: 16px;
+            flex: 0 0 16px;
+            color: var(--secondary-color);
+        }
+        
+        /* Social Footer */
+        .social-footer {
+            background-color: var(--header-bg);
+            width: 100%;
+            padding: 8px 0;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px;
+            gap: 30px;
+        }
+        
+        .social-link {
+            color: var(--dark-text);
+            font-size: 20px;
+            transition: opacity 0.3s ease;
+            text-decoration: none;
+            margin-bottom: -5px;
+        }
+        
+        .social-link:hover {
+            opacity: 0.7;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+                padding: 0 15px;
+            }
+            
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .brand-section {
+                padding: 30px 15px 15px;
+            }
+            
+            .spark-brand {
+                font-size: 80px;
+            }
+            
+            .widget-container {
+                margin: 30px 0;
+                padding: 0 15px;
+            }
+            
+            .support-message {
+                margin: 20px 15px 40px;
+                padding: 20px;
+            }
+            
+            .banner-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .banner-text {
+                animation: none;
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -125,91 +360,127 @@
         <div class="loading-spinner"></div>
     </div>
     
-    <div class="header">
-        <a href="https://www.sparktoria.com/brand-strategy-visual-form" target="_blank" rel="noopener noreferrer">
-            <img src="Sparktoria Logo 07.png" alt="Company Logo" class="logo">
-        </a>
-    </div>
+    <!-- Top Header Navigation -->
+    <header class="top-header">
+        <div class="header-content">
+            <div class="logo-nav">
+                <a href="https://www.sparktoria.com" class="logo">
+                    <img src="https://static.wixstatic.com/media/067e0a_3d54e2c1f4604b609860ead35fb3decb~mv2.png/v1/fill/w_94,h_22,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Sparktoria%20Brand%20BLUE-10_edited.png" alt="Sparktoria" />
+                </a>
+            </div>
+            <div class="header-actions">
+                <a href="https://www.sparktoria.com/brand-strategy" class="back-link">
+                    ← Back
+                </a>
+            </div>
+        </div>
+    </header>
     
-    <!-- Widget container -->
-    <div class="widget-container">
-        <elevenlabs-convai 
-            id="brand-interview"
-            variant="expanded"
-            start-call-text="Start Now"
-            end-call-text="End Interview"
-            action-text="Discover Your Brand Journey"
-            speaking-text="Brand Manager is speaking..."
-            listening-text="Listening to your response..."
-            dynamic-variables='{
-                "clientName": "",
-                "companyName": "",
-                "interviewId": ""
-            }'>
-        </elevenlabs-convai>
-    </div>
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Brand Section -->
+        <section class="brand-section">
+            <div class="spark-brand">SPARK</div>
+            <p class="brand-description">Our AI brand strategist will conduct a professional interview to gather comprehensive information about your business, helping us create personalized brand guidelines tailored specifically for you. Click 'Start Now' below to begin your brand discovery journey.</p>
+        </section>
+        
+        <!-- Widget container - Hero Element -->
+        <div class="widget-container">
+            <elevenlabs-convai
+                id="brand-interview"
+                variant="expanded"
+                start-call-text="Start Now"
+                end-call-text="End Interview"
+                action-text="Discover Your Brand Journey"
+                speaking-text="Brand Manager is speaking..."
+                listening-text="Listening to your response..."
+                dynamic-variables='{
+                    "clientName": "",
+                    "companyName": "",
+                    "interviewId": ""
+                }'>
+            </elevenlabs-convai>
+        </div>
+        
+        <!-- Support message section -->
+        <div class="support-message" role="note" aria-label="Support information">
+            <div class="support-eyebrow">
+                <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M13 3L4 14h6l-1 7 9-12h-6l1-6z"></path>
+                </svg>
+                <span>Helpful tip</span>
+            </div>
+            <p>Already completed your conversation? Awesome! Please hold off on additional calls for now, as our agent only remembers your most recent chat. We'll be sending a form soon where you can add any extra thoughts. Need anything else in the meantime? Our support team is just an email away!</p>
+            <p>Having trouble with your call? No worries! Drop us a line at <a class="support-link" href="mailto:support@sparktoria.com">support@sparktoria.com</a> and we'll sort it out.</p>
+        </div>
+    </main>
     
-    <!-- Support message section -->
-    <div class="support-message">
-        <p>Having trouble with your call? No worries! Drop us a line at <a href="mailto:support@sparktoria.com">support@sparktoria.com</a> and we'll sort it out.</p>
-        <p>Already completed your conversation? Awesome! Please hold off on additional calls for now, as our agent only remembers your most recent chat. We'll be sending a form soon where you can add any extra thoughts. Need anything else in the meantime? Our support team is just an email away!</p>
-    </div>
-
+    <!-- Social Footer -->
+    <footer class="social-footer">
+        <div class="footer-content">
+            <a href="#" class="social-link" aria-label="Instagram">
+                <img src="https://static.wixstatic.com/media/11062b_ca1d837ce7194421b781ee7384061a8e~mv2.png/v1/fill/w_21,h_21,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_ca1d837ce7194421b781ee7384061a8e~mv2.png" alt="Instagram" style="width: 21px; height: 21px;">
+            </a>
+            <a href="#" class="social-link" aria-label="Facebook">
+                <img src="https://static.wixstatic.com/media/11062b_362ef89dec51403eb0ee59a21bde967c~mv2.png/v1/fill/w_21,h_21,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_362ef89dec51403eb0ee59a21bde967c~mv2.png" alt="Facebook" style="width: 21px; height: 21px;">
+            </a>
+            <a href="#" class="social-link" aria-label="X (Twitter)">
+                <img src="https://static.wixstatic.com/media/11062b_e82f42804b3546dfa8e426e752b24542~mv2.png/v1/fill/w_21,h_21,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_e82f42804b3546dfa8e426e752b24542~mv2.png" alt="X (Twitter)" style="width: 21px; height: 21px;">
+            </a>
+            <a href="#" class="social-link" aria-label="LinkedIn">
+                <img src="https://static.wixstatic.com/media/11062b_72c275822d4344358ee379f14e7e115f~mv2.png/v1/fill/w_21,h_21,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_72c275822d4344358ee379f14e7e115f~mv2.png" alt="LinkedIn" style="width: 21px; height: 21px;">
+            </a>
+            <a href="#" class="social-link" aria-label="YouTube">
+                <img src="https://static.wixstatic.com/media/11062b_30de4e7217e64dfdadc3ea03beea7b94~mv2.png/v1/fill/w_21,h_21,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_30de4e7217e64dfdadc3ea03beea7b94~mv2.png" alt="YouTube" style="width: 21px; height: 21px;">
+            </a>
+            <a href="#" class="social-link" aria-label="TikTok">
+                <img src="https://static.wixstatic.com/media/11062b_7fc95bac711041dcb9691b6a09192a84~mv2.png/v1/fill/w_21,h_21,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_7fc95bac711041dcb9691b6a09192a84~mv2.png" alt="TikTok" style="width: 21px; height: 21px;">
+            </a>
+        </div>
+    </footer>
+    
     <!-- ElevenLabs Widget Script -->
     <script src="https://elevenlabs.io/convai-widget/index.js"></script>
-    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Add loaded class after a short delay to trigger animations
             setTimeout(function() {
                 document.body.classList.add('loaded');
             }, 800);
-            
             // Log when the script starts running
             console.log("DOM loaded - initializing widget...");
-            
             // Get all parameters from URL
             const urlParams = new URLSearchParams(window.location.search);
             const clientName = urlParams.get('clientName') || '';
             const companyName = urlParams.get('companyName') || '';
             const interviewId = urlParams.get('interviewId') || '';
-            
             // Get agent ID from URL with fallback to default
             const agentId = urlParams.get('agentId') || 'NEggV97RYYBf8GYylZnC'; // Default ID
-            
             console.log("URL parameters extracted:", {
                 clientName,
                 companyName,
                 interviewId,
                 agentId
             });
-            
             const widget = document.getElementById('brand-interview');
-            
             // Set the agent-id attribute dynamically
             widget.setAttribute('agent-id', agentId);
             console.log("Agent ID set to:", agentId);
-            
             // Set dynamic variables
             const dynamicVars = {
                 clientName: clientName,
                 companyName: companyName,
                 interviewId: interviewId
             };
-            
             // Log variable values
             console.log("Setting dynamic variables:", JSON.stringify(dynamicVars));
-            
             // Update dynamic variables attribute
             widget.setAttribute('dynamic-variables', JSON.stringify(dynamicVars));
-            
             // Verify the attribute was set correctly
             console.log("Dynamic variables attribute set to:", widget.getAttribute('dynamic-variables'));
-            
             // Add observer to ensure widget stays where we want it
             setTimeout(function() {
                 console.log("Setting up widget position observer...");
-                
                 const observer = new MutationObserver(function(mutations) {
                     const widgetEl = document.getElementById('brand-interview');
                     if (widgetEl) {
@@ -217,12 +488,10 @@
                         if (widgetEl.style.position !== 'static') {
                             widgetEl.style.position = 'static';
                         }
-                        
                         // Force center alignment
                         if (widgetEl.style.margin !== '0 auto') {
                             widgetEl.style.margin = '0 auto';
                         }
-                        
                         // Try to access shadow DOM to override internal styles
                         if (widgetEl.shadowRoot) {
                             const containerEl = widgetEl.shadowRoot.querySelector('div');
@@ -233,13 +502,12 @@
                         }
                     }
                 });
-                
                 // Observe the widget container for any changes
                 const widgetContainer = document.querySelector('.widget-container');
-                observer.observe(widgetContainer, { 
-                    childList: true, 
-                    subtree: true, 
-                    attributes: true 
+                observer.observe(widgetContainer, {
+                    childList: true,
+                    subtree: true,
+                    attributes: true
                 });
             }, 1000);
         });
